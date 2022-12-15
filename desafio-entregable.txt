@@ -1,0 +1,73 @@
+// Creacion de la base de datos "ecommerce"
+> use ecommerce
+switched to db ecommerce
+
+// Creacion de los documentos
+> db.createCollection("mensajes")
+{ "ok" : 1 }
+> db.createCollection("productos")
+{ "ok" : 1 }
+> show collections
+mensajes
+productos
+>
+
+// Carga y conexion con base de datos
+> load("scriptMongo.js") 
+connecting to: mongodb://localhost:27017/ecommerce
+Implicit session: session { "id" : UUID("5229719f-eba9-434e-b1f7-e527346e751d") }
+MongoDB server version: 5.0.14
+true
+
+// Listar base de datos
+> show databases
+admin      0.000GB
+config     0.000GB
+ecommerce  0.000GB
+local      0.000GB
+mibase     0.000GB
+sistema    0.000GB
+> use ecommerce
+switched to db ecommerce
+
+// Listar todos los documentos de la coleccion "productos"
+> db.productos.find()
+{ "_id" : ObjectId("6396229a2abfbe070a0349c8"), "title" : "Coca-Cola", "price" : 180, "thumbnail" : "https://carrefourar.vtexassets.com/arquivos/ids/197474/7790895002656_02.jpg?v=637523693401530000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349c9"), "title" : "Pepsi", "price" : 200, "thumbnail" : "https://carrefourar.vtexassets.com/arquivos/ids/191221/7791813555049_01.jpg?v=637511787878930000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349ca"), "title" : "Sprite", "price" : 220, "thumbnail" : "https://carrefourar.vtexassets.com/arquivos/ids/232328/7790895000447_02.jpg?v=637763940887870000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349cb"), "title" : "Fanta", "price" : 240, "thumbnail" : "https://carrefourar.vtexassets.com/arquivos/ids/220123/7790895000454_02.jpg?v=637704294056530000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349cc"), "title" : "Mirinda", "price" : 260, "thumbnail" : "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/611/627/products/2250-mirinda-011-17fdb4404c02207a1916179151426762-480-0.png" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349cd"), "title" : "7-UP", "price" : 300, "thumbnail" : "https://jumboargentina.vtexassets.com/arquivos/ids/588476/7up-Lima-Limon-225l-1-247057.jpg?v=637280467469470000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349ce"), "title" : "Monster", "price" : 320, "thumbnail" : "https://jumboargentina.vtexassets.com/arquivos/ids/682932/Bebida-Monster-Energy-Vr-473cc-1-881537.jpg?v=637764969931230000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349cf"), "title" : "Speed Unlimited", "price" : 340, "thumbnail" : "https://jumboargentina.vtexassets.com/arquivos/ids/703712/Bebida-Speed-Unlimited-269cc-1-888008.jpg?v=637895325893670000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d0"), "title" : "Rockstar", "price" : 150, "thumbnail" : "https://carrefourar.vtexassets.com/arquivos/ids/203066/7791813111214_02.jpg?v=637571183877800000" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d1"), "title" : "Quilmes", "price" : 100, "thumbnail" : "http://cdn.shopify.com/s/files/1/0393/3231/5303/products/quilmes-cerveza-clasica-botella-1_1024x.jpg?v=1598952014" }
+> 
+
+// Listar todos los documentos de la coleccion "mensajes"
+> db.mensajes.find()  
+{ "_id" : ObjectId("6396229a2abfbe070a0349d2"), "user" : "Omar Adra", "message" : "Primer mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d3"), "user" : "Paula Barrionuevo", "message" : "Segundo mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d4"), "user" : "Omar Adra", "message" : "Tercer mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d5"), "user" : "Omar Adra", "message" : "Cuarto mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d6"), "user" : "Paula Barrionuevo", "message" : "Quinto mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d7"), "user" : "Omar Adra", "message" : "Sexto mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d8"), "user" : "Omar Adra", "message" : "Septimo mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349d9"), "user" : "Paula Barrionuevo", "message" : "Octavo mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349da"), "user" : "Omar Adra", "message" : "Noveno mensaje" }
+{ "_id" : ObjectId("6396229a2abfbe070a0349db"), "user" : "Omar Adra", "message" : "Decimo mensaje" }
+> 
+
+// Mostrar la cantidad de documentos de cada coleccion
+> db.productos.count()
+10
+> db.mensajes.count()
+10
+> 
+
+// CRUD - Agregar producto
+> db.productos.insertOne({title: "Moca Cola", price: 300, thumbnail: "https://carrefourar.vtexassets.com/arquivos/ids/197474/7790895002656_02.jpg?v=637523693401530000"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("639a665d7af453460779e399")
+}
